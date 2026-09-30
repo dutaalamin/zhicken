@@ -24,6 +24,7 @@ export default function BerandaScreen({ navigation }) {
   const [kategori, setKategori] = useState("semua");
   const [cari, setCari] = useState("");
   const [memuat, setMemuat] = useState(true);
+  const [promoAktif, setPromoAktif] = useState(0);
   const { jumlah } = useStore();
 
   // Simulasi memuat data (skeleton) — di app nyata ini diganti fetch API
@@ -107,48 +108,91 @@ export default function BerandaScreen({ navigation }) {
         ListHeaderComponent={
           <>
             {/* Banner promo */}
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              snapToInterval={lebarKonten - 20 * 2 - 34 + 12}
-              decelerationRate="fast"
-              contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
-            >
-              {PROMO.map((p, i) => (
-                <TouchableOpacity
-                  key={i}
-                  activeOpacity={0.9}
-                  onPress={() => navigation.navigate("Promo")}
-                  className="h-[178px] rounded-2xl overflow-hidden bg-[#3f434a]"
-                  style={{
-                    width: lebarKonten - 20 * 2 - 34,
-                    shadowColor: "#000",
-                    shadowOpacity: 0.18,
-                    shadowRadius: 10,
-                    shadowOffset: { width: 0, height: 4 },
-                    elevation: 4,
-                  }}
-                >
-                  <Image source={{ uri: p.gambar }} className="w-full h-full" />
-                  <LinearGradient
-                    colors={["transparent", "rgba(0,0,0,0.35)", "rgba(0,0,0,0.92)"]}
-                    locations={[0, 0.45, 1]}
-                    className="absolute inset-0"
-                  />
-                  <View className="absolute inset-0 justify-end p-5">
-                    <View className="self-start flex-row items-center bg-merah px-2.5 py-1 rounded-full mb-2.5">
+            <View>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                snapToInterval={lebarKonten - 20 * 2 - 34 + 12}
+                decelerationRate="fast"
+                contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
+                scrollEventThrottle={16}
+                onScroll={(e) => {
+                  const x = e.nativeEvent.contentOffset.x;
+                  const langkah = lebarKonten - 20 * 2 - 34 + 12;
+                  setPromoAktif(Math.round(x / langkah));
+                }}
+              >
+                {PROMO.map((p, i) => (
+                  <TouchableOpacity
+                    key={i}
+                    activeOpacity={0.92}
+                    onPress={() => navigation.navigate("Promo")}
+                    className="h-[186px] rounded-2xl overflow-hidden bg-[#2a2a2a]"
+                    style={{
+                      width: lebarKonten - 20 * 2 - 34,
+                      shadowColor: "#000",
+                      shadowOpacity: 0.22,
+                      shadowRadius: 14,
+                      shadowOffset: { width: 0, height: 6 },
+                      elevation: 5,
+                    }}
+                  >
+                    <Image source={{ uri: p.gambar }} className="w-full h-full" />
+
+                    {/* Gradient: terang di atas, gelap di bawah */}
+                    <LinearGradient
+                      colors={["rgba(0,0,0,0.45)", "rgba(0,0,0,0.1)", "rgba(0,0,0,0.95)"]}
+                      locations={[0, 0.4, 1]}
+                      className="absolute inset-0"
+                    />
+
+                    {/* Badge diskon (kiri atas, warna khas promo) */}
+                    <View
+                      className="absolute top-3.5 left-3.5 flex-row items-center px-3 py-1.5 rounded-full"
+                      style={{ backgroundColor: p.warna }}
+                    >
                       <Ionicons name="flash" size={11} color="#fff" />
-                      <Text className="font-ekstra text-white text-[9.5px] tracking-[1.2px] ml-1">
-                        PROMO HARI INI
+                      <Text className="font-ekstra text-white text-[10px] tracking-[0.8px] ml-1">
+                        {p.diskon}
                       </Text>
                     </View>
-                    <Text className="font-hitam text-white text-[23px] leading-[27px]">
-                      {p.judul}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
+
+                    {/* Teks bawah */}
+                    <View className="absolute inset-x-0 bottom-0 p-4">
+                      <Text
+                        className="font-hitam text-white text-[22px] leading-[26px]"
+                        numberOfLines={2}
+                      >
+                        {p.judul}
+                      </Text>
+                      <View className="flex-row items-center mt-2.5">
+                        <View className="bg-white px-3.5 py-1.5 rounded-full flex-row items-center">
+                          <Text className="font-ekstra text-teks text-[11.5px]">
+                            Pesan Sekarang
+                          </Text>
+                          <Ionicons name="arrow-forward" size={12} color={warna.teks} style={{ marginLeft: 4 }} />
+                        </View>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+
+              {/* Titik indikator */}
+              <View className="flex-row justify-center items-center mt-3" style={{ gap: 6 }}>
+                {PROMO.map((_, i) => (
+                  <View
+                    key={i}
+                    className="rounded-full"
+                    style={{
+                      width: promoAktif === i ? 18 : 6,
+                      height: 6,
+                      backgroundColor: promoAktif === i ? warna.merah : "#d9d9d9",
+                    }}
+                  />
+                ))}
+              </View>
+            </View>
 
             {/* Kategori */}
             <ScrollView
