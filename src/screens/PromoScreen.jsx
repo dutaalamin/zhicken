@@ -41,12 +41,6 @@ export default function PromoScreen() {
                 <Text className="font-ekstra text-teks text-[16px]">
                   {item.nama}
                 </Text>
-                <Text
-                  className="font-sedang text-abu text-[12.5px] mt-1"
-                  numberOfLines={2}
-                >
-                  {item.deskripsi}
-                </Text>
                 <View className="flex-row items-center justify-between mt-3">
                   <Text className="font-hitam text-merah text-[16px]">
                     {rupiah(item.harga)}

@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import { warna, LEBAR_MAKS } from "../theme";
 import { MENU, KATEGORI, PROMO, rupiah } from "../data/menu";
 import KartuMenu from "../components/KartuMenu";
@@ -70,15 +71,24 @@ export default function BerandaScreen({ navigation }) {
       </View>
 
       {/* Pencarian */}
-      <View className="flex-row items-center gap-3 bg-bgabu rounded-md px-4 py-[14px] mx-5 mt-3 mb-2">
+      <View className="flex-row items-center gap-2.5 bg-bgabu rounded-full px-4 h-[46px] mx-5 mt-3 mb-2">
         <Ionicons name="search" size={18} color={warna.abu} />
         <TextInput
-          className="flex-1 font-sedang text-teks text-[15px] p-0"
+          className="flex-1 font-sedang text-teks text-[14.5px] py-0"
           placeholder="Mau makan apa hari ini?"
           placeholderTextColor={warna.abu}
           value={cari}
           onChangeText={setCari}
+          style={{ outlineStyle: "none" }}
         />
+        {cari.length > 0 && (
+          <TouchableOpacity
+            onPress={() => setCari("")}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Ionicons name="close-circle" size={17} color={warna.abu} />
+          </TouchableOpacity>
+        )}
       </View>
 
       <FlatList
@@ -100,28 +110,40 @@ export default function BerandaScreen({ navigation }) {
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
+              snapToInterval={lebarKonten - 20 * 2 - 34 + 12}
+              decelerationRate="fast"
               contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
             >
               {PROMO.map((p, i) => (
                 <TouchableOpacity
                   key={i}
-                  activeOpacity={0.85}
+                  activeOpacity={0.9}
                   onPress={() => navigation.navigate("Promo")}
-                  className="h-[170px] rounded-xl overflow-hidden bg-[#3f434a]"
-                  style={{ width: lebarKonten - 20 * 2 - 34 }}
+                  className="h-[178px] rounded-2xl overflow-hidden bg-[#3f434a]"
+                  style={{
+                    width: lebarKonten - 20 * 2 - 34,
+                    shadowColor: "#000",
+                    shadowOpacity: 0.18,
+                    shadowRadius: 10,
+                    shadowOffset: { width: 0, height: 4 },
+                    elevation: 4,
+                  }}
                 >
                   <Image source={{ uri: p.gambar }} className="w-full h-full" />
-                  <View className="absolute inset-0 justify-end p-5 bg-black/40">
-                    <View className="self-start bg-merah px-3 py-1 rounded-xs mb-2">
-                      <Text className="font-ekstra text-white text-[10px] tracking-wider">
-                        PROMO
+                  <LinearGradient
+                    colors={["transparent", "rgba(0,0,0,0.35)", "rgba(0,0,0,0.92)"]}
+                    locations={[0, 0.45, 1]}
+                    className="absolute inset-0"
+                  />
+                  <View className="absolute inset-0 justify-end p-5">
+                    <View className="self-start flex-row items-center bg-merah px-2.5 py-1 rounded-full mb-2.5">
+                      <Ionicons name="flash" size={11} color="#fff" />
+                      <Text className="font-ekstra text-white text-[9.5px] tracking-[1.2px] ml-1">
+                        PROMO HARI INI
                       </Text>
                     </View>
-                    <Text className="font-hitam text-white text-[21px]">
+                    <Text className="font-hitam text-white text-[23px] leading-[27px]">
                       {p.judul}
-                    </Text>
-                    <Text className="font-sedang text-white/90 text-[13px]">
-                      {p.ket}
                     </Text>
                   </View>
                 </TouchableOpacity>
