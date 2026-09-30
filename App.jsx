@@ -78,7 +78,12 @@ function Navigasi() {
   const { jumlah } = useStore();
 
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      documentTitle={{
+        enabled: false,
+        formatter: () => "Zhicken",
+      }}
+    >
       <StatusBar style="dark" />
       <Tab.Navigator
         screenOptions={({ route }) => ({
