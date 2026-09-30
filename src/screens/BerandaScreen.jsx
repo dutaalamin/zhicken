@@ -147,14 +147,14 @@ export default function BerandaScreen({ navigation }) {
                     />
 
                     {/* Teks bawah */}
-                    <View className="absolute inset-x-0 bottom-0 px-4 pt-4 pb-7">
+                    <View className="absolute inset-x-0 bottom-0 px-4 pt-4 pb-6">
                       <Text
                         className="font-hitam text-white text-[22px] leading-[26px]"
                         numberOfLines={2}
                       >
                         {p.judul}
                       </Text>
-                      <View className="flex-row mt-3">
+                      <View className="flex-row mt-7">
                         <View
                           className="px-5 py-2.5 rounded-full bg-merah"
                           style={{
