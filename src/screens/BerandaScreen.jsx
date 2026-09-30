@@ -148,37 +148,13 @@ export default function BerandaScreen({ navigation }) {
 
                     {/* Teks bawah */}
                     <View className="absolute inset-x-0 bottom-0 p-4">
-                      {/* Label kecil berwarna */}
-                      <View className="flex-row items-center mb-1.5">
-                        <View
-                          className="w-1.5 h-1.5 rounded-full mr-1.5"
-                          style={{ backgroundColor: p.warna }}
-                        />
-                        <Text
-                          className="font-ekstra text-[10.5px] tracking-[1.4px] uppercase"
-                          style={{ color: p.warna }}
-                        >
-                          {p.label}
-                        </Text>
-                      </View>
-
                       <Text
                         className="font-hitam text-white text-[22px] leading-[26px]"
                         numberOfLines={2}
                       >
                         {p.judul}
                       </Text>
-
-                      <View className="flex-row items-center justify-between mt-3">
-                        <View>
-                          <Text className="font-sedang text-white/70 text-[11.5px]">
-                            {p.ket}
-                          </Text>
-                          <Text className="font-hitam text-white text-[15px] mt-0.5">
-                            {p.harga}
-                          </Text>
-                        </View>
-
+                      <View className="flex-row mt-3">
                         <View
                           className="px-5 py-2.5 rounded-full bg-merah"
                           style={{
@@ -190,7 +166,7 @@ export default function BerandaScreen({ navigation }) {
                           }}
                         >
                           <Text className="font-ekstra text-white text-[12.5px]">
-                            Pesan
+                            Pesan Sekarang
                           </Text>
                         </View>
                       </View>
