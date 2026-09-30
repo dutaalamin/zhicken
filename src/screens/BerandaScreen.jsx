@@ -147,7 +147,7 @@ export default function BerandaScreen({ navigation }) {
                     />
 
                     {/* Teks bawah */}
-                    <View className="absolute inset-x-0 bottom-0 p-4">
+                    <View className="absolute inset-x-0 bottom-0 px-4 pt-4 pb-7">
                       <Text
                         className="font-hitam text-white text-[22px] leading-[26px]"
                         numberOfLines={2}
