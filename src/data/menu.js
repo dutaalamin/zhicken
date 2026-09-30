@@ -20,24 +20,27 @@ export const KATEGORI = [
 export const PROMO = [
   {
     judul: "Paket Hemat Hari Ini",
-    ket: "Big Mac + Fries + Coke cuma Rp 65.000",
+    label: "Hemat Hari Ini",
+    ket: "Big Mac + Fries + Coke",
+    harga: "Rp 65.000",
     gambar: foto("1550547660-d9450f859349", 1200),
     warna: "#e01e1e",
-    diskon: "HEMAT 25%",
   },
   {
     judul: "Menu Baru Spicy Korean",
-    ket: "Ayam crispy saus Korea, pedas nagih",
+    label: "Menu Baru",
+    ket: "Ayam crispy saus Korea",
+    harga: "Mulai Rp 32.000",
     gambar: foto("1626645738196-c2a7c87a8f58", 1200),
     warna: "#ff6b00",
-    diskon: "BARU",
   },
   {
     judul: "Dessert Diskon 30%",
-    ket: "Semua es krim & sundae, hari ini saja",
+    label: "Diskon Spesial",
+    ket: "Semua es krim & sundae",
+    harga: "Diskon 30%",
     gambar: foto("1497034825429-c343d7c6a68f", 1200),
     warna: "#c2185b",
-    diskon: "DISKON 30%",
   },
 ];
 
