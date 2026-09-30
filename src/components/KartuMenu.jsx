@@ -69,49 +69,49 @@ export default function KartuMenu({ menu, onPress, lebar }) {
         )}
       </View>
 
-      <View className="p-4">
+      <View className="p-3.5">
         <Text
-          className="font-ekstra text-teks text-[16px] leading-[21px] min-h-[21px]"
-          numberOfLines={1}
+          className="font-ekstra text-teks text-[14.5px] leading-[19px] min-h-[38px]"
+          numberOfLines={2}
         >
           {menu.nama}
         </Text>
 
-        <View className="flex-row items-center justify-between mt-3">
-          <Text
-            className="font-hitam text-teks text-[14px]"
-            numberOfLines={1}
-          >
+        <View className="mt-2">
+          <Text className="font-hitam text-teks text-[14px]" numberOfLines={1}>
             {rupiah(menu.harga)}
           </Text>
 
-          {!habis &&
-            (qty === 0 ? (
-              <TouchableOpacity
-                className="w-8 h-8 rounded-md bg-merah items-center justify-center active:opacity-80"
-                onPress={tekanTambah}
-              >
-                <Ionicons name="add" size={18} color={warna.putih} />
-              </TouchableOpacity>
-            ) : (
-              <View className="flex-row items-center bg-merah rounded-md overflow-hidden">
+          {!habis && (
+            <View className="mt-2 flex-row justify-end">
+              {qty === 0 ? (
                 <TouchableOpacity
-                  className="w-6 h-7 items-center justify-center active:opacity-70"
-                  onPress={tekanKurang}
-                >
-                  <Ionicons name="remove" size={14} color={warna.putih} />
-                </TouchableOpacity>
-                <Text className="font-hitam text-white text-[13px] min-w-[14px] text-center">
-                  {qty}
-                </Text>
-                <TouchableOpacity
-                  className="w-6 h-7 items-center justify-center active:opacity-70"
+                  className="w-8 h-8 rounded-md bg-merah items-center justify-center active:opacity-80"
                   onPress={tekanTambah}
                 >
-                  <Ionicons name="add" size={14} color={warna.putih} />
+                  <Ionicons name="add" size={18} color={warna.putih} />
                 </TouchableOpacity>
-              </View>
-            ))}
+              ) : (
+                <View className="flex-row items-center bg-merah rounded-md overflow-hidden">
+                  <TouchableOpacity
+                    className="w-8 h-8 items-center justify-center active:opacity-80"
+                    onPress={tekanKurang}
+                  >
+                    <Ionicons name="remove" size={16} color={warna.putih} />
+                  </TouchableOpacity>
+                  <Text className="font-hitam text-white text-[14px] min-w-[20px] text-center">
+                    {qty}
+                  </Text>
+                  <TouchableOpacity
+                    className="w-8 h-8 items-center justify-center active:opacity-80"
+                    onPress={tekanTambah}
+                  >
+                    <Ionicons name="add" size={16} color={warna.putih} />
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          )}
         </View>
       </View>
     </Pressable>

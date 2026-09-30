@@ -103,8 +103,10 @@ export default function BerandaScreen({ navigation }) {
               contentContainerStyle={{ paddingHorizontal: 20, gap: 12 }}
             >
               {PROMO.map((p, i) => (
-                <View
+                <TouchableOpacity
                   key={i}
+                  activeOpacity={0.85}
+                  onPress={() => navigation.navigate("Promo")}
                   className="h-[170px] rounded-xl overflow-hidden bg-[#3f434a]"
                   style={{ width: lebarKonten - 20 * 2 - 34 }}
                 >
@@ -122,7 +124,7 @@ export default function BerandaScreen({ navigation }) {
                       {p.ket}
                     </Text>
                   </View>
-                </View>
+                </TouchableOpacity>
               ))}
             </ScrollView>
 
