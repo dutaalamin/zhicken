@@ -146,17 +146,6 @@ export default function BerandaScreen({ navigation }) {
                       className="absolute inset-0"
                     />
 
-                    {/* Badge diskon (kiri atas, warna khas promo) */}
-                    <View
-                      className="absolute top-3.5 left-3.5 flex-row items-center px-3 py-1.5 rounded-full"
-                      style={{ backgroundColor: p.warna }}
-                    >
-                      <Ionicons name="flash" size={11} color="#fff" />
-                      <Text className="font-ekstra text-white text-[10px] tracking-[0.8px] ml-1">
-                        {p.diskon}
-                      </Text>
-                    </View>
-
                     {/* Teks bawah */}
                     <View className="absolute inset-x-0 bottom-0 p-4">
                       <Text
@@ -165,12 +154,21 @@ export default function BerandaScreen({ navigation }) {
                       >
                         {p.judul}
                       </Text>
-                      <View className="flex-row items-center mt-2.5">
-                        <View className="bg-white px-3.5 py-1.5 rounded-full flex-row items-center">
-                          <Text className="font-ekstra text-teks text-[11.5px]">
+                      <View className="flex-row mt-3">
+                        <View
+                          className="px-5 py-2.5 rounded-full"
+                          style={{
+                            backgroundColor: p.warna,
+                            shadowColor: p.warna,
+                            shadowOpacity: 0.5,
+                            shadowRadius: 8,
+                            shadowOffset: { width: 0, height: 3 },
+                            elevation: 4,
+                          }}
+                        >
+                          <Text className="font-ekstra text-white text-[12.5px] tracking-[0.3px]">
                             Pesan Sekarang
                           </Text>
-                          <Ionicons name="arrow-forward" size={12} color={warna.teks} style={{ marginLeft: 4 }} />
                         </View>
                       </View>
                     </View>
